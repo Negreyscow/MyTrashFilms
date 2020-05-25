@@ -1,0 +1,23 @@
+.container {
+  max-width: 800px;
+  display: flex;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.movie {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 10px;
+  width: 170px;
+}
+
+.movie img {
+  padding-bottom: 0;
+}
+
+
+
+

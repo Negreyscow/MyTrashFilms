@@ -1,7 +1,11 @@
 import * as mongoose from 'mongoose'
 
 export const MovieSchema = new mongoose.Schema({
-    title: {
+    Title: {
+        type: String,
+        required: true
+    },
+    Genre: {
         type: String,
         required: true
     },
@@ -9,32 +13,43 @@ export const MovieSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    poster: {
+    imdbRating: {
+        type: Number,
+        required: true
+    },
+    Year: {
         type: String,
         required: true
     },
-    category: {
+    Plot: {
         type: String,
         required: true
     },
-    watched: {
+    Poster: {
+        type: String,
+        required: true
+    },
+    Comment: {
+        type: String,
+        default: ''
+    },
+    Watched: {
         type: Boolean,
         default: true
     },
-    description: {
-        type: String,
-        required: false
-    }
 })
 
-export interface IMovie extends mongoose.Document {
-    title: string
-    imdbID: string
-    poster: string
-    category: string
-    watched: boolean
-    description: string
+export interface Movie extends mongoose.Document {
+    id?: string,
+    Title: string,
+    Genre: string,
+    Year: string,
+    Plot: string,
+    imdbRating: number,
+    Poster: string,
+    imdbID: string,
+    Comment?: string,
+    Watched?: boolean
 }
-
 
 

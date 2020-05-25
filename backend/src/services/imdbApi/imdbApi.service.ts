@@ -14,7 +14,6 @@ export class ImdbService {
     }
 
     async getMovieByImdbId(imdbId: string){
-        console.log(imdbId)
         return this.http.get(`http://www.omdbapi.com/?apikey=d8f9f45&i=${imdbId}`)
             .pipe(
                 map(response => response.data)

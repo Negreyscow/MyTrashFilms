@@ -3,86 +3,74 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 
 import { ImdbService } from '../services/imdbApi/imdbApi.service'
-import { IMovie } from './movie.model'
+import { Movie } from './movie.model'
 
 @Injectable()
 export class MoviesService {
 
     constructor(
-        @InjectModel('Movie') private readonly movieModel: Model<IMovie>,
+        @InjectModel('Movie') private readonly movieModel: Model<Movie>,
         private readonly imdbService: ImdbService
     ){}
-
-    async setMovie(
-        input: string, 
-        description: string, 
-        category: string, 
-        watched: boolean
-    ){
+    
+    async setMovie(movie: Movie){        
+        const hasMovie = await this.movieModel.find({imdbID: movie.imdbID}).exec()
         
-        const data = await this.getDataFromAPI(input)
-        
-        const hasMovie = await this.movieModel.find({imdbID: data.imdbID}).exec()
-
-        if (hasMovie){
+        if (hasMovie.length){
             throw new NotFoundException('Duplicated movie!')  
         }
-        
-        const movie = new this.movieModel({
-            title: data.Title,
-            poster: data.Poster,
-            imdbID: data.imdbID,
-            description,
-            watched,
-            category
-        })
 
-        const result = await movie.save()
-        return { id: result._id, data: result }
+        
+        const newMovie = new this.movieModel(movie)
+
+        const result = await newMovie.save()
+        return { data: result }
     }
 
-    async getMovies() {
-        const movies = await this.movieModel.find().exec() || []
+    // async setMovie(
+    //     input: string, 
+    //     description: string, 
+    //     category: string, 
+    //     watched: boolean
+    // ){
         
-        return movies.map(movie => ({
-            id: movie._id,
-            title: movie.title,
-            description: movie.description,
-            category: movie.category,
-            watched: movie.watched
-        }))
+    //     const data = await this.getDataFromAPI(input)
+        
+    //     const hasMovie = await this.movieModel.find({imdbID: data.imdbID}).exec()
+    //     console.log(hasMovie)
+    //     if (hasMovie.length){
+    //         throw new NotFoundException('Duplicated movie!')  
+    //     }
+        
+    //     const movie = new this.movieModel({
+    //         title: data.Title,
+    //         poster: data.Poster,
+    //         imdbID: data.imdbID,
+    //         description,
+    //         watched,
+    //         category
+    //     })
+
+    //     const result = await movie.save()
+    //     return { id: result._id, data: result }
+    // }
+
+    async getMovies() {
+        return await this.movieModel.find().exec() || []
     }
 
     async getMovie(id: string) {
-        const movie =  await this.findMovie(id)
-        return {
-            id: movie._id,
-            title: movie.title,
-            description: movie.description,
-            category: movie.category,
-            watched: movie.watched
-        }
+        return this.findMovie(id)
     }
     
 
-    async updateMovie(
-        id: string, 
-        description: string, 
-        category: string, 
-        watched: boolean
-    ){
-        const movie = await this.findMovie(id)
+    async updateMovie(id: string, movie: Movie){
+        const updatedMovie = await this.findMovie(id)
 
-        if (description)
-            movie.description = description
+        updatedMovie.Comment = movie.Comment
+        updatedMovie.Watched = movie.Watched
 
-        if (category)
-            movie.category = category
-        
-        if (watched)
-            movie.watched = watched
-
-        const result = await movie.save()
+        const result = await updatedMovie.save()
         return { id: result._id }
     }
 
@@ -123,20 +111,12 @@ export class MoviesService {
         }
     }
 
-    private async findMovie(id: string){
-        let movie
-        
+    private async findMovie(id: string){        
         try {
-            movie = await this.movieModel.findById(id)
+            return await this.movieModel.findById(id)
         } catch (err) {
-            throw new NotFoundException('There is no movie :(')
+            throw new NotFoundException('Movie not found :(')
         }
-
-        if (!movie){
-            throw new NotFoundException('There is no movie :(')
-        }
-
-        return movie
     }
 
 }

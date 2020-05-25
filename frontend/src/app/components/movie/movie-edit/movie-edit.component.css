@@ -1,0 +1,38 @@
+.container {
+  max-width: 1000px;
+  display: flex;
+  margin-top: 20px;
+  background-color: darkgray;
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
+
+.movie-info div h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.movie-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie-details > p {
+  font-size: 15px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+  align-items: flex-end;
+}
+
+.buttons button {
+  margin: 5px;
+}

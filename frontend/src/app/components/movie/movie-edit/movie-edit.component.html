@@ -1,0 +1,53 @@
+<div class="container">
+  <div>
+    <img
+      src="{{ movie.Poster }}"
+      alt="{{ movie.Title }}"
+    >
+  </div>
+  <div class="movie-info">
+    <div>
+      <h1>{{ movie.Title }}</h1>
+    </div>
+
+    <div class="movie-details">
+      <p>
+        Imdb Rating: {{ movie.imdbRating }}
+      </p>
+      <p>
+        Year: {{ movie.Year }}
+      </p>
+      <p>
+        Genre: {{ movie.Genre }}
+      </p>
+    </div>
+
+    <div>
+      <h2>Sinopsis</h2>
+      <p>{{ movie.Plot }}</p>
+    </div>
+
+    <div>
+      <h2>My comment</h2>
+      <p *ngIf="!comment">{{  movie.Comment ? movie.Comment : 'Add a comment'  }}</p>
+      <mat-form-field *ngIf="comment" class="example-full-width">
+        <mat-label>My comment</mat-label>
+        <textarea [(ngModel)]="movie.Comment" matInput placeholder="Ex. It makes me feel..."></textarea>
+      </mat-form-field>
+    </div>
+
+
+    <div class="buttons">
+      <button *ngIf="!comment" (click)="comment = true" mat-fab aria-label="Example icon-button with a heart icon">
+        <mat-icon>comment</mat-icon>
+      </button>
+      <button *ngIf="comment" (click)="saveComment()" mat-fab aria-label="Example icon-button with a heart icon">
+        <mat-icon>check</mat-icon>
+      </button>
+      <button (click)="deleteMovie(movie._id)" mat-fab aria-label="Example icon-button with a heart icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+
+  </div>
+</div>

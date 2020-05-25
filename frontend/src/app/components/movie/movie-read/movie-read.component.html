@@ -1,0 +1,16 @@
+<div class="container">
+  <mat-card
+    appMaterialElevation
+    class="movie"
+    *ngFor="let movie of movies"
+  >
+    <img
+      mat-card-image
+      src="{{ movie.Poster }}"
+       alt="{{ movie.Title }}"
+    >
+    <a routerLink="movie/edit/{{movie._id}}">
+      See more
+    </a>
+  </mat-card>
+</div>
