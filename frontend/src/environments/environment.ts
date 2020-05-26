@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  IMDB_API_KEY: "d8f9f45"
+  imdbApiKey: "d8f9f45",
+  serverBaseUrl: "http://localhost:3000"
 };
 
 /*

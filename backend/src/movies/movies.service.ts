@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 
@@ -15,7 +15,7 @@ export class MoviesService {
         const hasMovie = await this.movieModel.find({imdbID: movie.imdbID}).exec()
         
         if (hasMovie.length){
-            throw new NotFoundException('Duplicated movie!')  
+            throw new BadRequestException('Duplicated movie!')  
         }
 
         
