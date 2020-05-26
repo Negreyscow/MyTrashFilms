@@ -1,5 +1,5 @@
 <h1 align="center" background-color="black">
-  <img src='./frontend/src/assets/logo.png'>
+  <img src='./frontend/src/assets/logo-2.png'>
 </h1>
 
 <h1 align="center">
@@ -11,39 +11,30 @@
 </h1>
 
 ### 📜 Sobre
-Este projeto tem como idéia encontrar devs próximos utilizando geolocalização e filtrar por tecnologias, ele é composto por uma aplicação web em ReactJS, mobile em ReactNative e uma API REST (Node.js) como backend. 
+O myTRASH MOVIES foi desenvolvido com o intuito de se aventurar pela primeira vez com Angular e Nestjs, ele é composto por uma aplicação web em Angular e uma API REST (Nestjs) como backend. 
 
-A aplicação em **Node.js** (backend) é uma **API REST** escrita em **Node.JS** que serve dados tanto ao frontend quanto ao mobile. 
-
-A aplicação em **ReactJS** (frontend) é para o administrador **cadastrar usuários através de seus respectivos nomes de usuário no github, tecnologias e localização atual**.
-
-A aplicação em **React Native** é para o usuário encontrar os devs que esteja entro do raio da aplicação e por suas tecnologias cadastradas.
+O objetivo da aplicação é permitir o usuario cadastrar filmes ruins, ou seja filmes que sejam abaixo de uma nota de corte definido na aplicação, a note de corte é baseada no rating do filme no IMDB. O usuário pode informar o nome do filme (em inglês) ou o imdbId que pode ser encontrado na url do filme no site do IMDB, além do cadastro o usuário pode ordenar esses filmes na biblioteca e ver detalhes, podendo adicionar um comentário e definir como assistido ou não assistido. 
 
 ### 🔽 Requisitos
-1. Ter o **NodeJs** e o **Yarn** instalado
-2. Um dispositivo ou emulador **Android** conectado ao computador
+1. Ter o **NodeJS**, **Nest**, e o **NgCLI** instalado
 
 ### :rocket: Começando
-1. ``git clone https://github.com/Negreyscow/DevFinder``
-2. ``cd DevFinder``
+1. ``git clone https://github.com/Negreyscow/MyTrashFilms``
+2. ``cd MyTrashFilms``
 
 ### :rocket: Iniciando com o backend
 1. ``cd backend``
-2. ``yarn dev``
+2.  ``npm install``
+3. ``npm start:dev``
 
 ### 💻 Iniciando com o Front-end 
 1. ``cd frontend``
-2. ``yarn``
-3. ``yarn start`
-
-### 📱Iniciando com o Mobile (Apenas Android)
-1. ``cd mobile``
-2. ``react-native start``
-3. ``react-native run-android``
+2.  ``npm install``
+3. ``ng serve``
 
 ### 🧰  Ferramentas utilizadas
-- ⚛️ **ReactJs** - Biblioteca Javascript para criar interfaces de usuário.
-- ⚛️ **React Native** - Framework para criar apps nativos usando React.
+- ⚛️ **Angular 9** - Biblioteca Javascript para criar interfaces de usuário.
+- ⚛️ **Nestjs** - Nodejs Framework.
 - ⚙️ **MongoDB** - Banco de dados.
 
 <hr>
