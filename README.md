@@ -1,5 +1,5 @@
 <h1 align="center" background-color="black">
-  <img height="20" src='./frontend/src/assets/logo-2.png'>
+  <img height="60" src='./frontend/src/assets/logo-2.png'>
 </h1>
 
 <h1 align="center">
