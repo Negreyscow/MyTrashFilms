@@ -22,33 +22,31 @@
     </mat-tab>
 
     <mat-tab label="Search in my library">
-      <div class="add-movie">
-        <mat-form-field class="input-width">
-          <input
-            placeholder="Enter the name of the movie"
-            matInput
-            name="searchTitle"
-            [(ngModel)]="searchByTitle"
-          >
-        </mat-form-field>
-        <button
-          mat-raised-button color="primary"
-          (click)="saveMovie()"
-        >
-          Search
-        </button>
-      </div>
-      <div class="order-items">
-        <mat-form-field>
-          <mat-label>Order by</mat-label>
-          <mat-select (selectionChange)="changeMoviesOrder($event)">
-            <mat-option [value]="option" *ngFor="let option of orderOptions">{{ option }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-radio-group [value]="sortOrder" aria-label="Select an option" (change)="changeRadioValue($event)">
-          <mat-radio-button value="asc">Ascent</mat-radio-button>
-          <mat-radio-button value="desc">Descent</mat-radio-button>
-        </mat-radio-group>
+      <div class="search">
+        <div class="search-movie">
+          <mat-form-field class="input-width-search">
+            <input
+              placeholder="Enter the name of the movie"
+              matInput
+              name="searchTitle"
+              [(ngModel)]="searchByTitle"
+            >
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="order-items">
+          <mat-form-field>
+            <mat-label>Order by</mat-label>
+            <mat-select [(ngModel)]="orderBy" (selectionChange)="changeMoviesOrder()">
+              <mat-option [value]="option" *ngFor="let option of orderOptions">{{ option }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-radio-group [value]="sortOrder" aria-label="Select an option" (change)="changeRadioValue($event)">
+            <mat-radio-button value="asc">Ascent</mat-radio-button>
+            <mat-radio-button value="desc">Descent</mat-radio-button>
+          </mat-radio-group>
+        </div>
       </div>
     </mat-tab>
   </mat-tab-group>

@@ -1,7 +1,7 @@
 <div class="container">
   <mat-card
     appMaterialElevation
-    class="movie"
+    class="movie mat-elevation-z8"
     *ngFor="let movie of movies"
   >
     <img
@@ -9,8 +9,16 @@
       src="{{ movie.Poster }}"
        alt="{{ movie.Title }}"
     >
-    <a routerLink="movie/edit/{{movie._id}}">
-      See more
-    </a>
+    <div class="card-footer">
+      <a routerLink="movie/edit/{{movie._id}}">
+        See more
+      </a>
+        <mat-icon
+          matTooltip="{{ movie.Watched ? 'Watched' : 'Not watched' }}"
+          color="primary"
+        >
+          {{!movie.Watched ? 'visibility_off' : 'visibility'}}
+        </mat-icon>
+    </div>
   </mat-card>
 </div>

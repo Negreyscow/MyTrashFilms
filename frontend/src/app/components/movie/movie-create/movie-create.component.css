@@ -4,6 +4,11 @@ mat-card {
   margin-top: 10px;
 }
 
+.add-movie-tab {
+  display: flex;
+  justify-content: center;
+}
+
 mat-card mat-card-title {
   margin: 0 auto;
   text-align: center;
@@ -11,10 +16,23 @@ mat-card mat-card-title {
 }
 
 .add-movie {
-  width: 100%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  margin-top: 10px !important;
+  margin: 0 auto;
+}
+
+.search {
+  display: flex;
+}
+
+.search-movie {
+  width: 65%;
   display: flex;
   align-items: center;
   margin-top: 20px;
+  justify-content: center;
 }
 
 .container {
@@ -27,7 +45,12 @@ mat-card mat-card-title {
 }
 
 .input-width {
-  flex: 1;
+  width: 80%;
+  /* flex: 1; */
+}
+
+.input-width-search {
+  width: 80%;
 }
 
 .input-container {
@@ -50,6 +73,8 @@ mat-card mat-card-title {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
+  height: 60px;
 }
 
 .order-items mat-radio-group mat-radio-button {

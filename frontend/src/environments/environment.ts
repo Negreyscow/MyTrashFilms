@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  IMDB_API_KEY: "d8f9f45"
 };
 
 /*

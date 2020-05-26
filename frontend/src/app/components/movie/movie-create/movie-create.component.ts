@@ -9,13 +9,14 @@ import * as orderFunctions from '../movieOrderFunctions'
 @Component({
   selector: 'app-movie-create',
   templateUrl: './movie-create.component.html',
-  styleUrls: ['./movie-create.component.css']
+  styleUrls: ['./movie-create.component.css'],
 })
 export class MovieCreateComponent implements OnInit {
 
   movieInput: string = ""
   movies: Movie[] = []
   orderOptions: string[] = ['Name', 'Year', 'Rating']
+  orderBy: string = 'Name'
   sortOrder: string = 'asc'
   errorMessage: string = ''
   @observable searchByTitle: string = ""
@@ -32,8 +33,8 @@ export class MovieCreateComponent implements OnInit {
     })
   }
 
-  changeMoviesOrder(e: any){
-    switch (e.value) {
+  changeMoviesOrder(){
+    switch (this.orderBy) {
       case 'Name':
         orderFunctions.orderByName(this.movies, this.sortOrder)
         break;
@@ -50,6 +51,7 @@ export class MovieCreateComponent implements OnInit {
 
   changeRadioValue(e: any){
     this.sortOrder = e.value
+    this.changeMoviesOrder()
   }
 
   filterByTitle(title: string){
@@ -93,8 +95,6 @@ export class MovieCreateComponent implements OnInit {
       imdbRating,
       Poster
     }
-
-    console.log(newMovie)
 
     this.movieService.create(newMovie).subscribe(response => {
       this.movies.push(response.data)

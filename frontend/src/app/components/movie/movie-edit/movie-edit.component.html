@@ -1,51 +1,56 @@
 <div class="container">
-  <div>
+  <div class="mat-elevation-z8">
     <img
+      height="350px"
       src="{{ movie.Poster }}"
       alt="{{ movie.Title }}"
     >
   </div>
   <div class="movie-info">
-    <div>
+    <div class="title">
       <h1>{{ movie.Title }}</h1>
     </div>
 
     <div class="movie-details">
       <p>
-        Imdb Rating: {{ movie.imdbRating }}
+        <strong>Rating:</strong>  {{ movie.imdbRating }}
       </p>
       <p>
-        Year: {{ movie.Year }}
+        <strong>Year:</strong> {{ movie.Year }}
       </p>
       <p>
-        Genre: {{ movie.Genre }}
+        <strong>Genre:</strong> {{ movie.Genre }}
       </p>
     </div>
 
     <div>
-      <h2>Sinopsis</h2>
+      <h2 class="title">Plot</h2>
       <p>{{ movie.Plot }}</p>
     </div>
 
     <div>
-      <h2>My comment</h2>
-      <p *ngIf="!comment">{{  movie.Comment ? movie.Comment : 'Add a comment'  }}</p>
+      <h2 class="title">My comment</h2>
+      <p *ngIf="!comment">{{  movie.Comment ? movie.Comment : 'Edit to add a comment'  }}</p>
       <mat-form-field *ngIf="comment" class="example-full-width">
         <mat-label>My comment</mat-label>
         <textarea [(ngModel)]="movie.Comment" matInput placeholder="Ex. It makes me feel..."></textarea>
       </mat-form-field>
+      <mat-checkbox class="font-white" *ngIf="comment" [(ngModel)]="movie.Watched">Watched</mat-checkbox>
     </div>
 
 
     <div class="buttons">
-      <button *ngIf="!comment" (click)="comment = true" mat-fab aria-label="Example icon-button with a heart icon">
-        <mat-icon>comment</mat-icon>
+      <button *ngIf="!comment" (click)="cancel()" mat-fab aria-label="">
+        <mat-icon class="icon-color">undo</mat-icon>
       </button>
-      <button *ngIf="comment" (click)="saveComment()" mat-fab aria-label="Example icon-button with a heart icon">
-        <mat-icon>check</mat-icon>
+      <button *ngIf="!comment" (click)="comment = true" mat-fab aria-label="">
+        <mat-icon class="icon-color">edit</mat-icon>
       </button>
-      <button (click)="deleteMovie(movie._id)" mat-fab aria-label="Example icon-button with a heart icon">
-        <mat-icon>delete</mat-icon>
+      <button *ngIf="comment" (click)="saveComment()" mat-fab aria-label="">
+        <mat-icon class="icon-green">check</mat-icon>
+      </button>
+      <button (click)="deleteMovie(movie._id)" mat-fab aria-label="">
+        <mat-icon class="icon-color">delete</mat-icon>
       </button>
     </div>
 

@@ -34,6 +34,10 @@ export class MovieEditComponent implements OnInit {
     })
   }
 
+  cancel(){
+    this.router.navigate(['/'])
+  }
+
   saveComment(){
     this.movieService.updateMovie(this.movie).subscribe(response => {
       this.movieService.showMessage('Movie updated')

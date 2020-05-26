@@ -2,7 +2,33 @@
   max-width: 1000px;
   display: flex;
   margin-top: 20px;
-  background-color: darkgray;
+  background-color: black;
+  opacity: 0.8;
+  border-radius: 40px;
+  align-items: center;
+}
+
+.title {
+  color: white;
+  font-weight: 550;
+  margin: 15px 0 20px 0;
+}
+
+h1 {
+  color: white;
+  font-weight: 550;
+}
+
+p {
+  color: white;
+}
+
+h2 {
+  color: white;
+}
+
+.container div img {
+  margin: 10px;
 }
 
 .movie-info {
@@ -26,6 +52,10 @@
   font-size: 15px;
 }
 
+.font-white {
+  color: white;
+}
+
 .buttons {
   display: flex;
   justify-content: flex-end;
@@ -35,4 +65,16 @@
 
 .buttons button {
   margin: 5px;
+}
+
+.icon-color {
+  color: #c2185b;
+}
+
+.icon-green {
+  color: green;
+}
+
+.example-full-width {
+  width: 100%;
 }

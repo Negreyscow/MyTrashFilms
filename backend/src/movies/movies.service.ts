@@ -2,15 +2,13 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 
-import { ImdbService } from '../services/imdbApi/imdbApi.service'
 import { Movie } from './movie.model'
 
 @Injectable()
 export class MoviesService {
 
     constructor(
-        @InjectModel('Movie') private readonly movieModel: Model<Movie>,
-        private readonly imdbService: ImdbService
+        @InjectModel('Movie') private readonly movieModel: Model<Movie>
     ){}
     
     async setMovie(movie: Movie){        
@@ -26,34 +24,6 @@ export class MoviesService {
         const result = await newMovie.save()
         return { data: result }
     }
-
-    // async setMovie(
-    //     input: string, 
-    //     description: string, 
-    //     category: string, 
-    //     watched: boolean
-    // ){
-        
-    //     const data = await this.getDataFromAPI(input)
-        
-    //     const hasMovie = await this.movieModel.find({imdbID: data.imdbID}).exec()
-    //     console.log(hasMovie)
-    //     if (hasMovie.length){
-    //         throw new NotFoundException('Duplicated movie!')  
-    //     }
-        
-    //     const movie = new this.movieModel({
-    //         title: data.Title,
-    //         poster: data.Poster,
-    //         imdbID: data.imdbID,
-    //         description,
-    //         watched,
-    //         category
-    //     })
-
-    //     const result = await movie.save()
-    //     return { id: result._id, data: result }
-    // }
 
     async getMovies() {
         return await this.movieModel.find().exec() || []
@@ -85,29 +55,6 @@ export class MoviesService {
             return { message: 'Movie deleted' }
         } catch (error) {
             throw new NotFoundException('There is no movie :(') 
-        }
-    }
-
-    private async getDataFromAPI(input: string){
-        const data = /tt\d{7}/.test(input) 
-            ? await this.imdbService.getMovieByImdbId(input)
-            : await this.imdbService.getMovieByTitle(input)
-        
-        const { Title, imdbID, Poster, imdbRating } = data
-
-        if (parseFloat(imdbRating) > 5.5) {
-            throw new NotFoundException('This is a good movie')
-        }
-        
-        if (!imdbID){
-            throw new NotFoundException('Movie not found')
-        }
-
-        return {
-            Title,
-            imdbID,
-            Poster,
-            imdbRating
         }
     }
 
