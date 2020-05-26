@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment.prod';
 import { Component, OnInit, Input } from '@angular/core';
 import { observable, computed } from 'mobx-angular';
 
@@ -21,11 +22,14 @@ export class MovieCreateComponent implements OnInit {
   errorMessage: string = ''
   @observable searchByTitle: string = ""
 
+  imdbThreshold: number
 
   constructor(
     private movieService: MovieService,
     private imdbApiService: ImdbApiService
-  ) { }
+  ) {
+    this.imdbThreshold = environment.imdbThreshold
+  }
 
   ngOnInit(): void {
     this.movieService.getMovies().subscribe( movies => {
@@ -81,7 +85,7 @@ export class MovieCreateComponent implements OnInit {
       return
     }
 
-    if (imdbRating > 5.5){
+    if (imdbRating > this.imdbThreshold){
       this.showErrorMessage('Oh no! this movie is not so bad!')
       return
     }
