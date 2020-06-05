@@ -33,7 +33,7 @@ O objetivo da aplicação é permitir o usuario cadastrar filmes ruins, ou seja 
 3. ``ng serve``
 
 ### 🧰  Ferramentas utilizadas
-- ⚛️ **Angular 9** - Biblioteca Javascript para criar interfaces de usuário.
+- ⚛️ **Angular 9** - Framework Javascript para criar interfaces de usuário.
 - ⚛️ **Nestjs** - Nodejs Framework.
 - ⚙️ **MongoDB** - Banco de dados.
 
